@@ -48,6 +48,7 @@ resource "aws_subnet" "database" {
   count = length(var.database_subnets)
   vpc_id     = aws_vpc.main.id
   cidr_block = var.database_subnets[count.index]
+  availability_zone = local.az_names[count.index]
 
   tags = merge(
     local.common_tags,
